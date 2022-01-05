@@ -12,11 +12,13 @@ public class Context
     public IDictionary<string, object> GlobalFlagValues { set; get; }
     public string[] Args { set; get; }
 
+#pragma warning disable CS8618
     public Context()
     {
         FlagValues = new Dictionary<string, object>();
         GlobalFlagValues = new Dictionary<string, object>();
     }
+#pragma warning restore CS8618
 
     public string String(string key)
     {

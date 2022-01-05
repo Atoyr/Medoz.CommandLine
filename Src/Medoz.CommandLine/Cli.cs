@@ -8,9 +8,9 @@ using System.Diagnostics;
 
 public class Cli
 {
-    public static Cli NewApp() => new Cli();
+    public static Cli NewApp() => new();
 
-    public string Name { set; get; } = Path.GetFileNameWithoutExtension(Process.GetCurrentProcess().MainModule.FileName);
+    public string Name { set; get; } = Path.GetFileNameWithoutExtension(Environment.ProcessPath) ?? string.Empty;
 
     public string Usage { set; get; }
 
@@ -24,7 +24,7 @@ public class Cli
 
     public string CopyRight { set; get; }
 
-    public string ProcessName { get; } = Path.GetFileNameWithoutExtension(Process.GetCurrentProcess().MainModule.FileName);
+    public string ProcessName { get; } = Path.GetFileNameWithoutExtension(Environment.ProcessPath) ?? string.Empty;
 
     public IList<Flag> Flags { set; get; }
 
@@ -35,18 +35,20 @@ public class Cli
     public bool HideHelpCommand { set; get; } = false;
     public bool HideHelpFlag { set; get; } = false;
 
+#pragma warning disable CS8618
     public Cli()
     {
         Authors = new List<string>();
         Flags = new List<Flag>();
         Commands = new List<Command>();
     }
+#pragma warning restore CS8618
 
     public void Run(string[] args)
     {
         var ctx = new Context();
 
-        // 初期値設定
+        // set initial value
         foreach (var flag in Flags)
         {
             ctx.GlobalFlagValues.Add(flag.Name, flag.Value);
@@ -54,7 +56,7 @@ public class Cli
 
         Action<Context> action = Action == null ? writeHelpText : Action;
 
-        // ContextのFlag、Args設定
+        // setting for Contexts Flag and Args
         Command command = null;
 
         for (int i = 0; i < args.Length; i++)

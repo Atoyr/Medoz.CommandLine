@@ -26,15 +26,17 @@ public class Command
         return names;
     }
 
+#pragma warning disable CS8618
     private Command() { }
     public Command(string name)
     {
         Name = name;
-        Alias = new string[0];
+        Alias = Array.Empty<string>();
         Action = (_) => Console.WriteLine(CommandHelpText());
         Flags = new List<Flag>();
         SubCommands = new List<Command>();
     }
+#pragma warning restore CS8618
 
     public void AddSubCommand(Command subCommand)
     {

@@ -11,15 +11,17 @@ public abstract class Flag
     public string Name { set; get; }
     public string[] Alias { set; get; }
     public string Usage { set; get; }
-    public object Value { protected set; get; }
+    public object? Value { protected set; get; }
 
+#pragma warning disable CS8618
     public Flag(string name)
     {
         Name = name;
-        Alias = new string[0];
+        Alias = Array.Empty<string>();
         Usage = string.Empty;
         Value = null;
     }
+#pragma warning restore CS8618
 
     public string[] Names()
     {
@@ -50,7 +52,7 @@ public class Flag<T> : Flag
 {
     public Flag(string name) : base(name) { }
     public void SetDefaultValue(T value) => Value = value;
-    public T GetDefaultValue() => (T)Value;
+    public T GetDefaultValue() => (T)Value ?? default;
 }
 
 public class IntFlag : Flag
