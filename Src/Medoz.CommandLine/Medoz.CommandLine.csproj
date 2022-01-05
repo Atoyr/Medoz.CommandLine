@@ -12,7 +12,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
     <ProjectUrl>https://github.com/Atoyr/Medoz.CommandLine</ProjectUrl>
-    <Description>C# CommandLine tool.</Description>
+    <Description>.NET CommandLine tool.</Description>
     <ReleaseNotes>0.1.0 First Release</ReleaseNotes>
     <Copyright>© 2022 Ryota Uchiyama</Copyright>
     <Tags>.NET</Tags>
