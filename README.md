@@ -1,5 +1,5 @@
 # Medoz.CommandLine
-[![Nuget](https://img.shields.io/nuget/v/Medoz.ThemeProvider)](https://www.nuget.org/packages/Medoz.CommandLine/)
+[![Nuget](https://img.shields.io/nuget/v/Medoz.CommandLine)](https://www.nuget.org/packages/Medoz.CommandLine/)
 [![GitHub](https://img.shields.io/github/license/Atoyr/Medoz.CommandLine)](https://github.com/Atoyr/Medoz.CommandLine/blob/main/LICENSE)
 ## .NET Commandline tool
 .NET command line application tool.
