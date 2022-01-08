@@ -20,39 +20,12 @@ public class Context
     }
 #pragma warning restore CS8618
 
-    public string String(string key)
-    {
-        if (FlagValues.ContainsKey(key)) return (string)FlagValues[key];
-        return GlobalString(key);
-    }
+    public string String(string key) => FlagValues.ContainsKey(key) && FlagValues[key] is string s ? s : GlobalString(key);
+    public string GlobalString(string key) => GlobalFlagValues.ContainsKey(key) && GlobalFlagValues[key] is string s ? s : string.Empty; // TODO Throw Exception
 
-    public string GlobalString(string key)
-    {
-        if (GlobalFlagValues.ContainsKey(key)) return (string)GlobalFlagValues[key];
-        return string.Empty; // TODO Throw Exception
-    }
+    public int Int(string key) => FlagValues.ContainsKey(key) && FlagValues[key] is int i ? i : GlobalInt(key);
+    public int GlobalInt(string key) => GlobalFlagValues.ContainsKey(key) && GlobalFlagValues[key] is int i ? i : 0;
 
-    public int Int(string key)
-    {
-        if (FlagValues.ContainsKey(key)) return (int)FlagValues[key];
-        return GlobalInt(key);
-    }
-
-    public int GlobalInt(string key)
-    {
-        if (GlobalFlagValues.ContainsKey(key)) return (int)GlobalFlagValues[key];
-        return 0; // TODO Throw Exceptinon
-    }
-
-    public bool Bool(string key)
-    {
-        if (FlagValues.ContainsKey(key)) return (bool)FlagValues[key];
-        return GlobalBool(key);
-    }
-
-    public bool GlobalBool(string key)
-    {
-        if (GlobalFlagValues.ContainsKey(key)) return (bool)GlobalFlagValues[key];
-        return false; // TODO Throw Exception
-    }
+    public bool Bool(string key) => FlagValues.ContainsKey(key) && FlagValues[key] is bool b ? b : GlobalBool(key);
+    public bool GlobalBool(string key) => GlobalFlagValues.ContainsKey(key) && GlobalFlagValues[key] is bool b ? b : false;
 }

@@ -46,6 +46,7 @@ public class Cli
 
     public void Run(string[] args)
     {
+        applyHelpAction();
         var ctx = new Context();
 
         // set initial value
